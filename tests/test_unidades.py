@@ -6,6 +6,7 @@ from modelo.carga import (
   CargaCilindrica,
   CargaDistribuida
 )
+from modelo.eje import Eje
 from modelo.momento import Momento
 from modelo.unidades import (
   SistemaUnidades,
@@ -158,3 +159,26 @@ def test_momento_crear_convierte_unidades():
   assert momento.Mx == pytest.approx(1.0)
   assert momento.My == pytest.approx(2.0)
   assert momento.Mz == pytest.approx(-3.0)
+
+
+def test_conversiones_rechazan_sistema_invalido():
+  funciones = (
+    longitud_a_m,
+    longitud_desde_m,
+    fuerza_a_n,
+    fuerza_desde_n,
+    momento_a_nm,
+    momento_desde_nm,
+  )
+
+  for funcion in funciones:
+    with pytest.raises(TypeError, match="SistemaUnidades"):
+      funcion(1.0, "SI")
+
+  with pytest.raises(TypeError, match="SistemaUnidades"):
+    obtener_unidades("SI")
+
+
+def test_eje_crear_rechaza_sistema_invalido():
+  with pytest.raises(TypeError, match="SistemaUnidades"):
+    Eje.crear(1000, "SI")

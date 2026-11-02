@@ -245,3 +245,41 @@ def test_evaluar_con_nombre_inexistente(eje_si):
 
   with pytest.raises(KeyError, match="NoExiste"):
     resultado.evaluar("NoExiste", 0.5)
+
+
+def test_evaluar_rechaza_posicion_fuera_del_eje(eje_si):
+  eje_si.agregar_carga(
+    CargaCartesiana.crear(
+      "P", 500, SistemaUnidades.SI, Fy=-1000
+    )
+  )
+
+  resultado = _resultado(eje_si)
+
+  with pytest.raises(ValueError, match="fuera del eje"):
+    resultado.evaluar("Vy", -0.1)
+
+  with pytest.raises(ValueError, match="fuera del eje"):
+    resultado.evaluar("Vy", 1.1)
+
+
+def test_evaluar_rechaza_posicion_no_finita(eje_si):
+  resultado = _resultado(eje_si)
+
+  with pytest.raises(ValueError, match="finito"):
+    resultado.evaluar("Vy", float("nan"))
+
+
+def test_evaluar_acepta_los_extremos_y_tolera_redondeo(eje_si):
+  eje_si.agregar_carga(
+    CargaCartesiana.crear(
+      "P", 500, SistemaUnidades.SI, Fy=-1000
+    )
+  )
+
+  resultado = _resultado(eje_si)
+
+  assert resultado.evaluar("Vy", 0.0) == pytest.approx(0)
+  assert resultado.evaluar("Vy", 1.0) == pytest.approx(0)
+  assert resultado.evaluar("Vy", -1e-12) == pytest.approx(0)
+  assert resultado.evaluar("Vy", 1.0 + 1e-12) == pytest.approx(0)

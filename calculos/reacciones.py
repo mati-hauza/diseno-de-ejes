@@ -48,11 +48,10 @@ def calcular_reacciones(eje, acciones=None):
   suma_mx = sum(a.Mx for a in acciones)
 
   # Reacción axial: solamente el apoyo fijo la genera.
-  reacciones_axiales = {}
-
-  for apoyo in eje.apoyos:
-    if apoyo.fijo_axial:
-      reacciones_axiales[apoyo.nombre] = -suma_fx
+  reacciones_axiales = [
+    -suma_fx if apoyo.fijo_axial else 0.0
+    for apoyo in eje.apoyos
+  ]
 
   # Reacciones verticales.
   matriz_y = np.array([
@@ -81,25 +80,23 @@ def calcular_reacciones(eje, acciones=None):
   raz, rbz = np.linalg.solve(matriz_z, vector_z)
 
   # Organizar las reacciones.
-  valores = {
-    apoyo_a.nombre: {
-      "Fx": reacciones_axiales.get(apoyo_a.nombre, 0.0),
+  valores = [
+    {
+      "Fx": reacciones_axiales[0],
       "Fy": ray,
       "Fz": raz
     },
 
-    apoyo_b.nombre: {
-      "Fx": reacciones_axiales.get(apoyo_b.nombre, 0.0),
+    {
+      "Fx": reacciones_axiales[1],
       "Fy": rby,
       "Fz": rbz
     }
-  }
+  ]
 
   reacciones = []
 
-  for apoyo in eje.apoyos:
-    r = valores[apoyo.nombre]
-
+  for apoyo, r in zip(eje.apoyos, valores):
     reacciones.append(
       Accion(
         nombre=f"Reacción {apoyo.nombre}",

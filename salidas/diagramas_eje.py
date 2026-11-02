@@ -24,6 +24,7 @@ from matplotlib.patches import Rectangle
 from calculos.transformaciones import transformar_carga
 from modelo.carga import CargaCartesiana, CargaCilindrica
 from modelo.unidades import (
+  SistemaUnidades,
   fuerza_desde_n,
   longitud_desde_m,
   longitud_a_m,
@@ -160,7 +161,7 @@ def _factor_longitud(eje):
 
 
 def _unidad_carga_distribuida(eje):
-  if eje.sistema.name == "SI":
+  if eje.sistema == SistemaUnidades.SI:
     return "N/mm"
   return "lbf/in"
 
@@ -171,7 +172,7 @@ def _carga_distribuida_desde_n_por_m(valor, eje):
   return fuerza_desde_n(valor * longitud_en_m, eje.sistema)
 
 
-def _obtener_radio_visual(eje, cargas=None):
+def _obtener_radio_visual(eje):
   """Radio puramente gráfico; no depende del radio de aplicación de cargas."""
   return max(0.012 * eje.longitud, 1e-4)
 
@@ -210,7 +211,7 @@ def _obtener_datos_graficos(eje, resultado, cargas, momentos):
     })
 
   for reaccion in resultado.reacciones:
-    nombre_apoyo = reaccion.nombre.split()[-1]
+    nombre_apoyo = reaccion.nombre.removeprefix("Reacción ")
     datos["reacciones"].append({
       "id": f"R{nombre_apoyo}",
       "nombre": reaccion.nombre,
@@ -1298,7 +1299,7 @@ def generar_diagramas_eje(eje, resultado, mostrar=True):
   momentos = eje.obtener_todos_los_momentos()
   factor = _factor_longitud(eje)
   unidades = _unidades(eje)
-  radio_visual = _obtener_radio_visual(eje, cargas)
+  radio_visual = _obtener_radio_visual(eje)
   datos = _obtener_datos_graficos(eje, resultado, cargas, momentos)
 
   texto_info = _texto_acciones(eje, datos, unidades)

@@ -3,11 +3,13 @@ import pytest
 
 from calculos.reacciones import calcular_reacciones
 from calculos.transformaciones import obtener_acciones_externas
+from modelo.apoyo import Apoyo
 from modelo.carga import (
   CargaCartesiana,
   CargaCilindrica,
   CargaDistribuida
 )
+from modelo.eje import Eje
 from modelo.momento import Momento
 from modelo.unidades import SistemaUnidades
 
@@ -106,9 +108,6 @@ def test_reaccion_axial_solo_en_el_apoyo_fijo(eje_si):
 
 
 def test_reaccion_axial_en_apoyo_fijo_derecho():
-  from modelo.apoyo import Apoyo
-  from modelo.eje import Eje
-
   eje = Eje.crear(1000, SistemaUnidades.SI)
   eje.agregar_apoyo(
     Apoyo.crear("A", 200, 50, False, SistemaUnidades.SI)
@@ -244,9 +243,47 @@ def test_reacciones_con_cargas_en_ambos_planos_y_momento(eje_si):
 
 
 def test_calcular_reacciones_exige_dos_apoyos():
-  from modelo.eje import Eje
-
   eje = Eje.crear(1000, SistemaUnidades.SI)
 
   with pytest.raises(ValueError, match="exactamente dos apoyos"):
     calcular_reacciones(eje)
+
+
+def test_reacciones_no_se_confunden_con_nombres_duplicados():
+  eje = Eje.crear(1000, SistemaUnidades.SI)
+  eje.agregar_apoyo(
+    Apoyo.crear("A", 200, 50, True, SistemaUnidades.SI)
+  )
+  eje.agregar_apoyo(
+    Apoyo.crear("A", 800, 50, False, SistemaUnidades.SI)
+  )
+  eje.agregar_carga(
+    CargaCartesiana.crear(
+      "P", 300, SistemaUnidades.SI, Fy=-1000
+    )
+  )
+
+  reacciones, _ = calcular_reacciones(eje)
+
+  assert reacciones[0].Fy == pytest.approx(2500 / 3)
+  assert reacciones[1].Fy == pytest.approx(500 / 3)
+
+
+def test_reaccion_axial_no_se_confunde_con_nombres_duplicados():
+  eje = Eje.crear(1000, SistemaUnidades.SI)
+  eje.agregar_apoyo(
+    Apoyo.crear("A", 200, 50, True, SistemaUnidades.SI)
+  )
+  eje.agregar_apoyo(
+    Apoyo.crear("A", 800, 50, False, SistemaUnidades.SI)
+  )
+  eje.agregar_carga(
+    CargaCartesiana.crear(
+      "P", 500, SistemaUnidades.SI, Fx=500
+    )
+  )
+
+  reacciones, _ = calcular_reacciones(eje)
+
+  assert reacciones[0].Fx == pytest.approx(-500)
+  assert reacciones[1].Fx == pytest.approx(0)

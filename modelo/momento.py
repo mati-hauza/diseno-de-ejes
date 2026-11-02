@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from math import isfinite
 
 from .unidades import (
-  SistemaUnidades,
   longitud_a_m,
   momento_a_nm
 )

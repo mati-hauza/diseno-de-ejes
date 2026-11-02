@@ -7,11 +7,13 @@ import pytest
 
 from calculos.solicitaciones import calcular_solicitaciones
 from calculos.transformaciones import transformar_carga
+from modelo.apoyo import Apoyo
 from modelo.carga import (
   CargaCartesiana,
   CargaCilindrica,
   CargaDistribuida
 )
+from modelo.eje import Eje
 from modelo.momento import Momento
 from modelo.unidades import SistemaUnidades
 from salidas.diagramas_eje import (
@@ -281,13 +283,11 @@ def test_generar_diagramas_de_solicitaciones_dibuja_todos_los_tramos(
     plt, "show", lambda: llamadas.append(True)
   )
 
-  generar_diagramas(eje_si, resultado)
+  figura = generar_diagramas(eje_si, resultado)
 
   assert llamadas == [True]
 
-  figura = plt.gcf()
-
-  assert len(figura.axes) == 9
+  assert len(figura.axes) == 8
   assert figura.axes[0].get_ylabel() == "Vy (N)"
   assert figura.axes[0].get_xlabel() == "Posición X (mm)"
 
@@ -307,6 +307,51 @@ def test_generar_diagramas_de_solicitaciones_dibuja_todos_los_tramos(
 
   assert figura.axes[5].get_ylabel() == "T (N·mm)"
   assert figura.axes[7].get_ylabel() == "MR (N·mm)"
-  assert len(figura.axes[8].lines) == 0
+
+  plt.close("all")
+
+
+def test_generar_diagramas_de_solicitaciones_sin_mostrar(
+  eje_si,
+  monkeypatch
+):
+  resultado = _eje_con_carga_simple(eje_si)
+  llamadas = []
+
+  monkeypatch.setattr(
+    plt, "show", lambda: llamadas.append(True)
+  )
+
+  figura = generar_diagramas(eje_si, resultado, mostrar=False)
+
+  assert llamadas == []
+  assert len(figura.axes) == 8
+
+  plt.close("all")
+
+
+def test_datos_graficos_con_nombres_de_apoyo_con_espacios():
+  eje = Eje.crear(1000, SistemaUnidades.SI)
+  eje.agregar_apoyo(
+    Apoyo.crear(
+      "Apoyo izquierdo", 200, 50, True, SistemaUnidades.SI
+    )
+  )
+  eje.agregar_apoyo(
+    Apoyo.crear(
+      "Apoyo derecho", 800, 50, False, SistemaUnidades.SI
+    )
+  )
+  resultado = calcular_solicitaciones(eje)
+
+  datos = _obtener_datos_graficos(
+    eje,
+    resultado,
+    eje.obtener_todas_las_cargas(),
+    eje.obtener_todos_los_momentos()
+  )
+
+  assert datos["reacciones"][0]["id"] == "RApoyo izquierdo"
+  assert datos["reacciones"][1]["id"] == "RApoyo derecho"
 
   plt.close("all")

@@ -20,7 +20,7 @@
 - Construir los objetos con `Clase.crear(...)`; llamar al constructor directamente exige unidades SI.
 - En `CargaDistribuida.crear`, `q` se ingresa en **N/mm** (SI) o **lbf/in** (inglés); internamente queda en N/m.
 - `posicion` es el centro del apoyo/elemento y `ancho` su ancho total, medidos desde el extremo izquierdo. X es longitudinal, Y vertical, Z horizontal.
-- El eje exige exactamente 2 apoyos y exactamente 1 con `fijo_axial=True`.
+- El eje exige exactamente 2 apoyos y exactamente 1 con `fijo_axial=True`. Los nombres de apoyos deben ser únicos y sus centros no pueden coincidir. Los elementos no pueden superponerse entre sí ni con los apoyos, ni quedar al ras de los extremos del eje.
 - `eje.validar()` acumula todos los errores y lanza un único `ValueError`; `calcular_solicitaciones` ya lo invoca.
 
 ## Arquitectura
@@ -30,7 +30,7 @@
 - `calculos/reacciones.py`: resuelve los dos apoyos; solo advierte si hay `Mx` externo desbalanceado, porque los apoyos no lo absorben.
 - `calculos/solicitaciones.py`: genera expresiones sympy `Piecewise` por tramos. `ResultadoSolicitaciones.evaluar(nombre, x)` recibe **x en metros** y devuelve SI. Las resultantes `VR` y `MR` se evalúan con `hypot` de sus componentes: no reemplazar por el `sqrt` expandido, que puede dar un radicando negativo por redondeo en apoyos.
 - `salidas/`: conversión a unidades de usuario, informes y gráficos. Mantener la conversión de unidades acá, no en el núcleo de cálculo.
-- `generar_diagramas` llama siempre a `plt.show()`. `generar_diagramas_eje(..., mostrar=True)` devuelve `(fig_3d, fig_2d)`; usar `mostrar=False` para guardar o incrustar.
+- `generar_diagramas(..., mostrar=True)` devuelve la figura de los 8 diagramas en una grilla 2x4. `generar_diagramas_eje(..., mostrar=True)` devuelve `(fig_3d, fig_2d)`. Usar `mostrar=False` para guardar o incrustar.
 - Ninguna función guarda figuras en disco; usar `fig.savefig(...)` si se necesitan archivos.
 
 ## Convenciones

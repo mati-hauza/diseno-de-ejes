@@ -1,5 +1,3 @@
-import math
-
 import sympy as sp
 
 from modelo.unidades import (
@@ -135,35 +133,24 @@ def mostrar_expresiones(resultado, sistema, unidades):
   expresiones = resultado.expresiones
   n_tramos = len(posiciones) - 1
 
-  # Obtener las expresiones de cada tramo para las funciones originales.
+  # Obtener las expresiones de cada tramo ya calculadas.
   funciones_base = {
     nombre: [
       expresiones[nombre].args[i][0]
       for i in range(n_tramos)
     ]
-    for nombre in ("Vy", "Vz", "My", "Mz", "T", "N")
+    for nombre in ("Vy", "Vz", "VR", "My", "Mz", "MR", "T", "N")
   }
-
-  # Calcular las resultantes como funciones por tramos.
-  vr = [
-    sp.sqrt(sp.expand(vy**2 + vz**2))
-    for vy, vz in zip(funciones_base["Vy"], funciones_base["Vz"])
-  ]
-
-  mr = [
-    sp.sqrt(sp.expand(my**2 + mz**2))
-    for my, mz in zip(funciones_base["My"], funciones_base["Mz"])
-  ]
 
   # Definir el orden y las unidades de impresión.
   funciones = {
     "Vy": ("fuerza", funciones_base["Vy"]),
     "Vz": ("fuerza", funciones_base["Vz"]),
-    "VR": ("fuerza", vr),
+    "VR": ("fuerza", funciones_base["VR"]),
     "N": ("fuerza", funciones_base["N"]),
     "My": ("momento", funciones_base["My"]),
     "Mz": ("momento", funciones_base["Mz"]),
-    "MR": ("momento", mr),
+    "MR": ("momento", funciones_base["MR"]),
     "T": ("momento", funciones_base["T"])
   }
 

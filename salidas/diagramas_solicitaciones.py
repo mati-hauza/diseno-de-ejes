@@ -227,12 +227,17 @@ def dibujar_diagrama(
   ax.margins(y=0.15)
 
 
-def generar_diagramas(eje, resultado):
-  nombres = [
-    "T", "Vy", "Mz", "VR",
-    "N", "Vz", "My", "MR"
-  ]
-  
+def generar_diagramas(eje, resultado, mostrar=True):
+  """Genera los ocho diagramas de solicitaciones internas.
+
+  Args:
+    eje: instancia de modelo.eje.Eje.
+    resultado: ResultadoSolicitaciones devuelto por calcular_solicitaciones.
+    mostrar: si es True, llama a plt.show().
+
+  Returns:
+    La figura de matplotlib.
+  """
   nombres = [
     "Vy", "Mz", "N",
     "Vz", "My", "T",
@@ -242,8 +247,8 @@ def generar_diagramas(eje, resultado):
   estaciones = resultado.posiciones
 
   figura, ejes = plt.subplots(
-    nrows=3,
-    ncols=3,
+    nrows=2,
+    ncols=4,
     figsize=(20, 9),
     constrained_layout=True
   )
@@ -263,4 +268,7 @@ def generar_diagramas(eje, resultado):
       estaciones
     )
 
-  plt.show()
+  if mostrar:
+    plt.show()
+
+  return figura

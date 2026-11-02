@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from math import hypot
+from math import hypot, isfinite
 
 import sympy as sp
 
@@ -24,6 +24,25 @@ class ResultadoSolicitaciones:
       raise KeyError(
         f"No existe la expresión '{nombre}'."
       )
+
+    posicion = float(posicion)
+
+    if not isfinite(posicion):
+      raise ValueError(
+        "La posición debe ser un número finito."
+      )
+
+    inicio = self.posiciones[0]
+    fin = self.posiciones[-1]
+    tolerancia = 1e-9 * max(abs(fin - inicio), 1.0)
+
+    if posicion < inicio - tolerancia or posicion > fin + tolerancia:
+      raise ValueError(
+        f"La posición {posicion} está fuera del eje "
+        f"[{inicio}, {fin}]."
+      )
+
+    posicion = min(max(posicion, inicio), fin)
 
     # Las resultantes se obtienen de sus componentes para evitar que
     # redondeos en sqrt(Vy**2 + Vz**2) o sqrt(My**2 + Mz**2) generen

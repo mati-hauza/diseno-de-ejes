@@ -1,9 +1,7 @@
 from dataclasses import dataclass
+from math import isfinite
 
-from .unidades import (
-  SistemaUnidades,
-  longitud_a_m
-)
+from .unidades import longitud_a_m
 
 
 @dataclass
@@ -12,6 +10,15 @@ class Apoyo:
   posicion: float
   ancho: float
   fijo_axial: bool
+
+  def __post_init__(self):
+    if not all(isfinite(v) for v in (
+      self.posicion,
+      self.ancho
+    )):
+      raise ValueError(
+        "La posición y el ancho del apoyo deben ser finitos."
+      )
 
   @classmethod
   def crear(cls, nombre, posicion, ancho, fijo_axial, sistema):

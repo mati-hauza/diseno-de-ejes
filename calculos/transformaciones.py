@@ -3,8 +3,7 @@ from math import radians, sin, cos
 
 from modelo.carga import (
   CargaCartesiana,
-  CargaCilindrica,
-  CargaDistribuida
+  CargaCilindrica
 )
 
 
