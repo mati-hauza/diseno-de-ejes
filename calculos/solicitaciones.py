@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from math import hypot
 
 import sympy as sp
 
@@ -23,6 +24,21 @@ class ResultadoSolicitaciones:
       raise KeyError(
         f"No existe la expresión '{nombre}'."
       )
+
+    # Las resultantes se obtienen de sus componentes para evitar que
+    # redondeos en sqrt(Vy**2 + Vz**2) o sqrt(My**2 + Mz**2) generen
+    # un radicando negativo diminuto justo en un apoyo o discontinuidad.
+    if nombre == "VR":
+      return float(hypot(
+        self.evaluar("Vy", posicion),
+        self.evaluar("Vz", posicion)
+      ))
+
+    if nombre == "MR":
+      return float(hypot(
+        self.evaluar("My", posicion),
+        self.evaluar("Mz", posicion)
+      ))
 
     valor = self.expresiones[nombre].subs(
       self.variable, posicion
