@@ -14,6 +14,7 @@ from salidas.diagramas_eje import generar_diagramas_eje
 
 
 def main():
+  # No sé q poner
   sistema = SistemaUnidades.INGLES
 
   eje = Eje.crear(11.5, sistema)
