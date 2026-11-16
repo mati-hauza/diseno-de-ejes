@@ -60,13 +60,19 @@ def test_unidades_de_salida():
   assert obtener_unidades(SistemaUnidades.SI) == {
     "longitud": "mm",
     "fuerza": "N",
-    "momento": "N·mm"
+    "momento": "N·mm",
+    "presion": "MPa",
+    "modulo": "GPa",
+    "densidad": "kg/m³"
   }
 
   assert obtener_unidades(SistemaUnidades.INGLES) == {
     "longitud": "in",
     "fuerza": "lbf",
-    "momento": "lbf·in"
+    "momento": "lbf·in",
+    "presion": "ksi",
+    "modulo": "Mpsi",
+    "densidad": "lb/in³"
   }
 
 

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import hypot, isfinite
 
 import sympy as sp
@@ -18,8 +18,14 @@ class ResultadoSolicitaciones:
   advertencias: list
   variable: object
   posiciones: list
+  numericas: dict = field(default_factory=dict)
 
-  def evaluar(self, nombre, posicion):
+  def _tolerancia(self):
+    inicio = self.posiciones[0]
+    fin = self.posiciones[-1]
+    return 1e-9 * max(abs(fin - inicio), 1.0)
+
+  def evaluar(self, nombre, posicion, lado=0):
     if nombre not in self.expresiones:
       raise KeyError(
         f"No existe la expresión '{nombre}'."
@@ -34,7 +40,7 @@ class ResultadoSolicitaciones:
 
     inicio = self.posiciones[0]
     fin = self.posiciones[-1]
-    tolerancia = 1e-9 * max(abs(fin - inicio), 1.0)
+    tolerancia = self._tolerancia()
 
     if posicion < inicio - tolerancia or posicion > fin + tolerancia:
       raise ValueError(
@@ -43,6 +49,11 @@ class ResultadoSolicitaciones:
       )
 
     posicion = min(max(posicion, inicio), fin)
+
+    if lado < 0:
+      posicion = max(posicion - tolerancia, inicio)
+    elif lado > 0:
+      posicion = min(posicion + tolerancia, fin)
 
     # Las resultantes se obtienen de sus componentes para evitar que
     # redondeos en sqrt(Vy**2 + Vz**2) o sqrt(My**2 + Mz**2) generen
@@ -59,6 +70,16 @@ class ResultadoSolicitaciones:
         self.evaluar("Mz", posicion)
       ))
 
+    funcion = self.numericas.get(nombre)
+
+    if funcion is not None:
+      valor = funcion(posicion)
+
+      try:
+        return float(valor)
+      except (TypeError, ValueError):
+        pass
+
     valor = self.expresiones[nombre].subs(
       self.variable, posicion
     )
@@ -74,16 +95,20 @@ class ResultadoSolicitaciones:
       sp.pprint(expresion)
 
 
-def calcular_solicitaciones(eje):
+def calcular_solicitaciones(eje, acciones=None, reacciones=None):
   eje.validar()
 
   # Obtener acciones externas equivalentes.
-  acciones = obtener_acciones_externas(eje)
+  if acciones is None:
+    acciones = obtener_acciones_externas(eje)
 
   # Calcular reacciones.
-  reacciones, advertencias = calcular_reacciones(
-    eje, acciones
-  )
+  if reacciones is None:
+    reacciones, advertencias = calcular_reacciones(
+      eje, acciones
+    )
+  else:
+    advertencias = []
 
   # Para construir los diagramas utilizamos las cargas puntuales
   # y las reacciones.
@@ -283,10 +308,21 @@ def calcular_solicitaciones(eje):
     for nombre, casos in tramos.items()
   }
 
+  numericas = {}
+
+  for nombre, expresion in expresiones.items():
+    try:
+      numericas[nombre] = sp.lambdify(
+        x, expresion, modules=["numpy"]
+      )
+    except Exception:
+      numericas = {}
+
   return ResultadoSolicitaciones(
     expresiones=expresiones,
     reacciones=reacciones,
     advertencias=advertencias,
     variable=x,
-    posiciones=posiciones
+    posiciones=posiciones,
+    numericas=numericas
   )

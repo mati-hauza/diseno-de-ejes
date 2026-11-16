@@ -6,6 +6,7 @@ import pytest
 
 from modelo.apoyo import Apoyo
 from modelo.eje import Eje
+from modelo.tramo import Tramo
 from modelo.unidades import SistemaUnidades
 
 
@@ -13,6 +14,9 @@ from modelo.unidades import SistemaUnidades
 def eje_si():
   """Eje de 1000 mm con apoyos en 200 mm y 800 mm."""
   eje = Eje.crear(1000, SistemaUnidades.SI)
+  eje.agregar_tramo(
+    Tramo.crear(0, 1000, 50, SistemaUnidades.SI)
+  )
 
   eje.agregar_apoyo(
     Apoyo.crear("A", 200, 50, True, SistemaUnidades.SI)
@@ -28,6 +32,9 @@ def eje_si():
 def eje_ingles():
   """Equivalente al eje_si, expresado en pulgadas y libras."""
   eje = Eje.crear(40, SistemaUnidades.INGLES)
+  eje.agregar_tramo(
+    Tramo.crear(0, 40, 2, SistemaUnidades.INGLES)
+  )
 
   eje.agregar_apoyo(
     Apoyo.crear("A", 8, 2, True, SistemaUnidades.INGLES)

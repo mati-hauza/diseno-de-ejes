@@ -73,6 +73,108 @@ def momento_desde_nm(valor, sistema):
   return valor / 0.112984829
 
 
+def masa_a_kg(valor, sistema):
+  """Convierte kg o lb a kilogramos."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return valor * 0.45359237
+
+
+def masa_desde_kg(valor, sistema):
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return valor / 0.45359237
+
+
+def temperatura_a_c(valor, sistema):
+  """Convierte °C o °F a grados Celsius."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return (valor - 32.0) * 5.0 / 9.0
+
+
+def temperatura_desde_c(valor, sistema):
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return valor * 9.0 / 5.0 + 32.0
+
+
+# Factores de conversión constantes.
+PSI_A_PA = 6894.757293168361
+LB_IN3_A_KG_M3 = 27679.904710191
+
+
+def presion_a_pa(valor, sistema):
+  """Convierte MPa o ksi a Pascales."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor * 1e6
+
+  return valor * PSI_A_PA * 1000
+
+
+def presion_desde_pa(valor, sistema):
+  """Convierte Pascales a MPa o ksi."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor / 1e6
+
+  return valor / (PSI_A_PA * 1000)
+
+
+def modulo_a_pa(valor, sistema):
+  """Convierte GPa o Mpsi a Pascales."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor * 1e9
+
+  return valor * PSI_A_PA * 1e6
+
+
+def modulo_desde_pa(valor, sistema):
+  """Convierte Pascales a GPa o Mpsi."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor / 1e9
+
+  return valor / (PSI_A_PA * 1e6)
+
+
+def densidad_a_kg_m3(valor, sistema):
+  """Convierte kg/m³ o lb/in³ a kg/m³."""
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return valor * LB_IN3_A_KG_M3
+
+
+def densidad_desde_kg_m3(valor, sistema):
+  validar_sistema(sistema)
+
+  if sistema == SistemaUnidades.SI:
+    return valor
+
+  return valor / LB_IN3_A_KG_M3
+
+
 def obtener_unidades(sistema):
   validar_sistema(sistema)
 
@@ -80,11 +182,17 @@ def obtener_unidades(sistema):
     return {
       "longitud": "mm",
       "fuerza": "N",
-      "momento": "N·mm"
+      "momento": "N·mm",
+      "presion": "MPa",
+      "modulo": "GPa",
+      "densidad": "kg/m³"
     }
 
   return {
     "longitud": "in",
     "fuerza": "lbf",
-    "momento": "lbf·in"
+    "momento": "lbf·in",
+    "presion": "ksi",
+    "modulo": "Mpsi",
+    "densidad": "lb/in³"
   }

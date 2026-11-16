@@ -107,7 +107,7 @@ def calcular_reacciones(eje, acciones=None):
       )
     )
 
-  # Comprobar equilibrio torsional.
+  # Comprobar equilibrio torsional. Los apoyos no absorben torque.
   advertencias = []
 
   if not np.isclose(suma_mx, 0.0, atol=1e-8, rtol=1e-9):
@@ -118,10 +118,65 @@ def calcular_reacciones(eje, acciones=None):
 
     unidad = obtener_unidades(eje.sistema)["momento"]
 
-    advertencias.append(
+    raise ValueError(
       "El sistema no está en equilibrio torsional. "
-      "Los apoyos definidos no pueden absorber el momento "
-      f"torsor resultante ({momento_resultante:.6g} {unidad})."
+      "Los apoyos no pueden absorber el momento torsor "
+      f"resultante ({momento_resultante:.6g} {unidad})."
     )
 
+  _verificar_residuos(eje, acciones, reacciones)
+
   return reacciones, advertencias
+
+
+def _verificar_residuos(eje, acciones, reacciones):
+  """Comprueba los seis residuos de equilibrio global."""
+  todas = list(acciones) + list(reacciones)
+
+  suma_fx = sum(a.Fx for a in todas)
+  suma_fy = sum(a.Fy for a in todas)
+  suma_fz = sum(a.Fz for a in todas)
+
+  suma_mx = sum(a.Mx for a in todas)
+  suma_my = sum(-a.posicion * a.Fz + a.My for a in todas)
+  suma_mz = sum(a.posicion * a.Fy + a.Mz for a in todas)
+
+  suma_fuerzas = sum(
+    abs(a.Fx) + abs(a.Fy) + abs(a.Fz)
+    for a in todas
+  )
+
+  suma_momentos = sum(
+    abs(a.Mx) + abs(a.My) + abs(a.Mz)
+    for a in todas
+  )
+
+  tolerancia_fuerzas = 1e-8 * max(1.0, suma_fuerzas)
+  tolerancia_momentos = 1e-8 * max(
+    1.0,
+    suma_momentos,
+    eje.longitud * suma_fuerzas
+  )
+
+  residuos = [
+    ("ΣFx", suma_fx, tolerancia_fuerzas),
+    ("ΣFy", suma_fy, tolerancia_fuerzas),
+    ("ΣFz", suma_fz, tolerancia_fuerzas),
+    ("ΣMx", suma_mx, tolerancia_momentos),
+    ("ΣMy", suma_my, tolerancia_momentos),
+    ("ΣMz", suma_mz, tolerancia_momentos)
+  ]
+
+  errores = []
+
+  for nombre, valor, tolerancia in residuos:
+    if abs(valor) > tolerancia:
+      errores.append(
+        f"{nombre} = {valor:.6g} (tolerancia {tolerancia:.6g})"
+      )
+
+  if errores:
+    raise ValueError(
+      "No se satisface el equilibrio global:\n"
+      + "\n".join(errores)
+    )

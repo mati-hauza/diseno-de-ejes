@@ -101,7 +101,8 @@ def dibujar_diagrama(
   resultado,
   nombre,
   eje,
-  estaciones
+  estaciones,
+  chavetas=None
 ):
   configuracion = CONFIGURACION_DIAGRAMAS[nombre]
 
@@ -224,16 +225,70 @@ def dibujar_diagrama(
     labelrotation=0
   )
 
+  _dibujar_referencias(ax, eje, chavetas)
+
   ax.margins(y=0.15)
 
 
-def generar_diagramas(eje, resultado, mostrar=True):
+def _dibujar_referencias(ax, eje, chavetas=None):
+  """Marca apoyos, elementos y concentradores sobre el diagrama."""
+  sistema = eje.sistema
+
+  for elemento in eje.elementos:
+    ax.axvspan(
+      convertir_longitud(elemento.inicio, sistema),
+      convertir_longitud(elemento.fin, sistema),
+      color="#5DADE2",
+      alpha=0.08,
+      linewidth=0
+    )
+
+  for escalonamiento in eje.escalonamientos:
+    ax.axvline(
+      convertir_longitud(escalonamiento.x_s, sistema),
+      color="#E67E22",
+      linestyle=":",
+      linewidth=0.9
+    )
+
+  for ranura in eje.ranuras:
+    ax.axvspan(
+      convertir_longitud(ranura.inicio, sistema),
+      convertir_longitud(ranura.fin, sistema),
+      color="#8E44AD",
+      alpha=0.18,
+      linewidth=0
+    )
+
+  for chaveta in (chavetas or []):
+    if not chaveta.existe:
+      continue
+    ax.axvspan(
+      convertir_longitud(chaveta.inicio, sistema),
+      convertir_longitud(chaveta.fin, sistema),
+      color="#D4AC0D",
+      alpha=0.22,
+      linewidth=0
+    )
+
+  for apoyo in eje.apoyos:
+    ax.axvline(
+      convertir_longitud(apoyo.posicion, sistema),
+      color="#2C3E50",
+      linestyle="--",
+      linewidth=0.9
+    )
+
+
+def generar_diagramas(eje, resultado, mostrar=True, chavetas=None):
   """Genera los ocho diagramas de solicitaciones internas.
 
   Args:
     eje: instancia de modelo.eje.Eje.
     resultado: ResultadoSolicitaciones devuelto por calcular_solicitaciones.
     mostrar: si es True, llama a plt.show().
+    chavetas: lista opcional de chavetas dimensionadas para marcar sus
+      intervalos.
 
   Returns:
     La figura de matplotlib.
@@ -265,7 +320,8 @@ def generar_diagramas(eje, resultado, mostrar=True):
       resultado,
       nombre,
       eje,
-      estaciones
+      estaciones,
+      chavetas=chavetas
     )
 
   if mostrar:

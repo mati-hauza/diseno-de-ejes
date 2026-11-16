@@ -15,6 +15,7 @@ from modelo.carga import (
 )
 from modelo.eje import Eje
 from modelo.momento import Momento
+from modelo.tramo import Tramo
 from modelo.unidades import SistemaUnidades
 from salidas.diagramas_eje import (
   _carga_distribuida_desde_n_por_m,
@@ -332,6 +333,9 @@ def test_generar_diagramas_de_solicitaciones_sin_mostrar(
 
 def test_datos_graficos_con_nombres_de_apoyo_con_espacios():
   eje = Eje.crear(1000, SistemaUnidades.SI)
+  eje.agregar_tramo(
+    Tramo.crear(0, 1000, 50, SistemaUnidades.SI)
+  )
   eje.agregar_apoyo(
     Apoyo.crear(
       "Apoyo izquierdo", 200, 50, True, SistemaUnidades.SI

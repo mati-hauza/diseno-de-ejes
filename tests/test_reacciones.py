@@ -165,7 +165,7 @@ def test_reacciones_por_carga_axial_excentrica(eje_si):
   )
 
 
-def test_aviso_de_torque_no_equilibrado(eje_si):
+def test_error_de_torque_no_equilibrado(eje_si):
   eje_si.agregar_carga(
     CargaCilindrica.crear(
       "F",
@@ -176,10 +176,8 @@ def test_aviso_de_torque_no_equilibrado(eje_si):
     )
   )
 
-  _, advertencias = calcular_reacciones(eje_si)
-
-  assert len(advertencias) == 1
-  assert "torsional" in advertencias[0]
+  with pytest.raises(ValueError, match="torsional"):
+    calcular_reacciones(eje_si)
 
 
 def test_sin_aviso_cuando_los_torques_se_equilibran(eje_si):

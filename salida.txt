@@ -1,0 +1,2151 @@
+
+========================================================================
+1. RESUMEN DE ENTRADAS
+========================================================================
+Longitud del eje: 11.500 in
+Sistema de unidades: INGLES
+Factor de seguridad mínimo: 1.500
+Divisiones de la malla: 800
+
+Tramos:
+  1. x ∈ [0.000, 1.250] in, d = 1.000 in
+  2. x ∈ [1.250, 1.750] in, d = 1.400 in
+  3. x ∈ [1.750, 3.500] in, d = 1.625 in
+  4. x ∈ [3.500, 7.500] in, d = 2.000 in
+  5. x ∈ [7.500, 9.750] in, d = 1.625 in
+  6. x ∈ [9.750, 10.250] in, d = 1.400 in
+  7. x ∈ [10.250, 11.500] in, d = 1.000 in
+
+Escalonamientos:
+  x = 1.250 in, D = 1.400, d = 1.000, r = 0.030
+  x = 1.750 in, D = 1.625, d = 1.400, r = 0.062
+  x = 3.500 in, D = 2.000, d = 1.625, r = 0.163
+  x = 7.500 in, D = 2.000, d = 1.625, r = 0.163
+  x = 9.750 in, D = 1.625, d = 1.400, r = 0.030
+  x = 10.250 in, D = 1.400, d = 1.000, r = 0.020
+
+Apoyos:
+  A: centro x = 0.750 in, ancho = 0.900, fijo axial = True
+  B: centro x = 10.750 in, ancho = 0.900, fijo axial = False
+
+Elementos:
+  Engrane 3: centro x = 2.750 in, ancho = 0.750
+    chaveta: a = 0.438 in, r_f = 0.033, n_chaveta = n_min
+  Engrane 4: centro x = 8.000 in, ancho = 1.000
+    chaveta: a = 0.438 in, r_f = 0.033, n_chaveta = n_min
+
+Ranuras:
+  x = 9.500 in, a = 0.068, t = 0.048, r = 0.010
+
+Material del eje:
+  AISI 1050 CD: Sut = 68.000 ksi, Sy = 48.000 ksi, acabado = maquinado, T = 68.000 °F, R = 0.500000, k_f_marin = 1.000
+
+Cargas puntuales y momentos:
+  W23: x = 2.750 in
+  W54: x = 8.500 in
+
+Cargas distribuidas:
+  (ninguna)
+
+========================================================================
+2. VALIDACIONES Y ADVERTENCIAS
+========================================================================
+- La chaveta de Engrane 3 tiene Sy mayor o igual que la del eje.
+- La chaveta de Engrane 4 tiene Sy mayor o igual que la del eje.
+- Peterson no da un factor específico para carga axial; se adopta Kt,N = Kt,B como aproximación académica.
+- El chavetero se modela con el diámetro bruto del tramo, sin descontar la profundidad, y con el mismo Kf en todo su intervalo. Es una aproximación conservadora.
+
+========================================================================
+3. DIMENSIONAMIENTO DE CHAVETAS
+========================================================================
+
+Engrane 3:
+  Te = |Σ Mx| = 3240.000 lbf·in
+  d = 1.625 in
+  a = b = h = 0.438 in
+  Material chaveta: AISI 1020 CD (chaveta) (Sy = 57.000 ksi)
+  Material cubo: AISI 1050 CD (cubo) (Sy = 84.000 ksi)
+  Sy,contacto = min = 48.000 ksi
+  n_chaveta = 1.500
+  Ft = 2Te/d = 3987.692 lbf
+  Fuerza por chaveta (m = 1): Ft,i = 3987.692 lbf
+  Ac = a·l = 160.794 mm², τc = 16.000 ksi
+  Ssy = 0.577·Sy,chaveta = 32.889 ksi, nc = 2.056
+  Ap = (a/2)·l = 80.397 mm², σp = 32.000 ksi
+  np = Sy,contacto/σp = 1.500
+  l_req,1 = 0.570 in, l_max = 0.9Le = 0.675 in
+  m = 1, l = 0.570 in, Lk = l
+  Chavetero: [2.465, 3.035] in, r_e = a/2 = 0.219, t_eje = t_cubo = a/2 = 0.219
+  Verificación: nc ≥ n_chaveta y np ≥ n_chaveta: cumple
+
+Engrane 4:
+  Te = |Σ Mx| = 3240.000 lbf·in
+  d = 1.625 in
+  a = b = h = 0.438 in
+  Material chaveta: AISI 1020 CD (chaveta) (Sy = 57.000 ksi)
+  Material cubo: AISI 1050 CD (cubo) (Sy = 84.000 ksi)
+  Sy,contacto = min = 48.000 ksi
+  n_chaveta = 1.500
+  Ft = 2Te/d = 3987.692 lbf
+  Fuerza por chaveta (m = 1): Ft,i = 3987.692 lbf
+  Ac = a·l = 160.794 mm², τc = 16.000 ksi
+  Ssy = 0.577·Sy,chaveta = 32.889 ksi, nc = 2.056
+  Ap = (a/2)·l = 80.397 mm², σp = 32.000 ksi
+  np = Sy,contacto/σp = 1.500
+  l_req,1 = 0.570 in, l_max = 0.9Le = 0.900 in
+  m = 1, l = 0.570 in, Lk = l
+  Chavetero: [7.715, 8.285] in, r_e = a/2 = 0.219, t_eje = t_cubo = a/2 = 0.219
+  Verificación: nc ≥ n_chaveta y np ≥ n_chaveta: cumple
+
+========================================================================
+4. CONCENTRADORES DE ESFUERZOS
+========================================================================
+
+Escalonamiento x=0.03175 (escalonamiento):
+  Posición: x = 1.250 in, lado = -1
+  D = 1.400 in
+  d = 1.000 in
+  r = 0.030 in
+  D/d = 1.400000
+  r/d = 0.030000
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 2.3825, Kt,B = 2.6275, Kts = 1.9618
+  q = 0.6387, qs = 0.7025
+  Kf,N = 1.8830, Kf,B = 2.0395, Kfs = 1.6757
+
+Escalonamiento x=0.044449999999999996 (escalonamiento):
+  Posición: x = 1.750 in, lado = -1
+  D = 1.625 in
+  d = 1.400 in
+  r = 0.062 in
+  D/d = 1.160714
+  r/d = 0.044643
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 1.8491, Kt,B = 2.1100, Kts = 1.5371
+  q = 0.7184, qs = 0.7732
+  Kf,N = 1.6100, Kf,B = 1.7975, Kfs = 1.4153
+
+Escalonamiento x=0.08889999999999999 (escalonamiento):
+  Posición: x = 3.500 in, lado = -1
+  D = 2.000 in
+  d = 1.625 in
+  r = 0.163 in
+  D/d = 1.230769
+  r/d = 0.100000
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 1.5517, Kt,B = 1.6990, Kts = 1.3566
+  q = 0.8045, qs = 0.8461
+  Kf,N = 1.4438, Kf,B = 1.5623, Kfs = 1.3017
+
+Escalonamiento x=0.1905 (escalonamiento):
+  Posición: x = 7.500 in, lado = +1
+  D = 2.000 in
+  d = 1.625 in
+  r = 0.163 in
+  D/d = 1.230769
+  r/d = 0.100000
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 1.5517, Kt,B = 1.6990, Kts = 1.3566
+  q = 0.8045, qs = 0.8461
+  Kf,N = 1.4438, Kf,B = 1.5623, Kfs = 1.3017
+
+Escalonamiento x=0.24764999999999998 (escalonamiento):
+  Posición: x = 9.750 in, lado = +1
+  D = 1.625 in
+  d = 1.400 in
+  r = 0.030 in
+  D/d = 1.160714
+  r/d = 0.021429
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 2.2337, Kt,B = 2.7139, Kts = 1.9085
+  q = 0.6387, qs = 0.7025
+  Kf,N = 1.7879, Kf,B = 2.0946, Kfs = 1.6382
+
+Escalonamiento x=0.26034999999999997 (escalonamiento):
+  Posición: x = 10.250 in, lado = +1
+  D = 1.400 in
+  d = 1.000 in
+  r = 0.020 in
+  D/d = 1.400000
+  r/d = 0.020000
+  Figura / fuente: A-15-7, A-15-8, A-15-9
+  Interpolación: bilineal lineal
+  Kt,N = 2.5150, Kt,B = 2.8250, Kts = 2.1701
+  q = 0.5907, qs = 0.6585
+  Kf,N = 1.8949, Kf,B = 2.0780, Kfs = 1.7705
+
+Ranura x=0.2413 (ranura):
+  Intervalo: [9.466, 9.534] in
+  a = 0.068 in
+  t = 0.048 in
+  r = 0.010 in
+  D = 1.625 in
+  d_r = 1.529 in
+  a/t = 1.416667
+  r/t = 0.200000
+  Figura / fuente: A-15-16, A-15-17
+  Interpolación: bilineal lineal
+  Kt,N = 4.1000, Kt,B = 4.1000, Kts = 2.4767
+  q = 0.5000, qs = 0.5719
+  Kf,N = 2.5499, Kf,B = 2.5499, Kfs = 1.8445
+
+Chavetero de Engrane 3 (chavetero):
+  Intervalo: [2.465, 3.035] in
+  m = 1
+  a = 0.438 in
+  l = 0.570 in
+  r_e = 0.219 in
+  r_f = 0.033 in
+  d = 1.625 in
+  a/d = 0.269231
+  r_f/d = 0.020000
+  Figura / fuente: Peterson, Chart 5.1 y 5.2
+  Interpolación: fórmulas de Peterson
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Advertencia: Peterson no da un factor específico para carga axial; se adopta Kt,N = Kt,B como aproximación académica.
+  Advertencia: El chavetero se modela con el diámetro bruto del tramo, sin descontar la profundidad, y con el mismo Kf en todo su intervalo. Es una aproximación conservadora.
+
+Chavetero de Engrane 4 (chavetero):
+  Intervalo: [7.715, 8.285] in
+  m = 1
+  a = 0.438 in
+  l = 0.570 in
+  r_e = 0.219 in
+  r_f = 0.033 in
+  d = 1.625 in
+  a/d = 0.269231
+  r_f/d = 0.020000
+  Figura / fuente: Peterson, Chart 5.1 y 5.2
+  Interpolación: fórmulas de Peterson
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Advertencia: Peterson no da un factor específico para carga axial; se adopta Kt,N = Kt,B como aproximación académica.
+  Advertencia: El chavetero se modela con el diámetro bruto del tramo, sin descontar la profundidad, y con el mismo Kf en todo su intervalo. Es una aproximación conservadora.
+
+============================================================
+REACCIONES EN LOS APOYOS
+============================================================
+
+Reacción A
+  Rx = 0.000 lbf
+  Ry = 356.725 lbf
+  Rz = 114.975 lbf
+
+Reacción B
+  Rx = 0.000 lbf
+  Ry = 725.275 lbf
+  Rz = 1776.025 lbf
+
+============================================================
+ECUACIONES DE LAS SOLICITACIONES INTERNAS
+============================================================
+Variable: x (in) | Fuerzas: lbf | Momentos: lbf·in
+
+Vy(x) [lbf] = {
+  0.000      si  0.000 ≤ x < 0.750
+  -356.725   si  0.750 ≤ x < 2.750
+  -159.725   si  2.750 ≤ x < 8.500
+  725.275    si  8.500 ≤ x < 10.750
+  0.000      si  10.750 ≤ x ≤ 11.500
+}
+
+Vz(x) [lbf] = {
+  0.000      si  0.000 ≤ x < 0.750
+  -114.975   si  0.750 ≤ x < 2.750
+  -654.975   si  2.750 ≤ x < 8.500
+  1776.025   si  8.500 ≤ x < 10.750
+  0.000      si  10.750 ≤ x ≤ 11.500
+}
+
+VR(x) [lbf] = {
+  0.000      si  0.000 ≤ x < 0.750
+  374.796    si  0.750 ≤ x < 2.750
+  674.169    si  2.750 ≤ x < 8.500
+  1918.408   si  8.500 ≤ x < 10.750
+  0.000      si  10.750 ≤ x ≤ 11.500
+}
+
+N(x) [lbf] = {
+  0.000   si  0.000 ≤ x < 0.750
+  0.000   si  0.750 ≤ x < 2.750
+  0.000   si  2.750 ≤ x < 8.500
+  0.000   si  8.500 ≤ x < 10.750
+  0.000   si  10.750 ≤ x ≤ 11.500
+}
+
+My(x) [lbf·in] = {
+  0.000                    si  0.000 ≤ x < 0.750
+  -114.975·x + 86.231      si  0.750 ≤ x < 2.750
+  -654.975·x + 1571.231    si  2.750 ≤ x < 8.500
+  1776.025·x - 19092.269   si  8.500 ≤ x < 10.750
+  0.000                    si  10.750 ≤ x ≤ 11.500
+}
+
+Mz(x) [lbf·in] = {
+  0.000                   si  0.000 ≤ x < 0.750
+  356.725·x - 267.544     si  0.750 ≤ x < 2.750
+  159.725·x + 274.206     si  2.750 ≤ x < 8.500
+  -725.275·x + 7796.706   si  8.500 ≤ x < 10.750
+  0.000                   si  10.750 ≤ x ≤ 11.500
+}
+
+MR(x) [lbf·in] = {
+  0.000                                                   si  0.000 ≤ x < 0.750
+  8.85075·(1793.21·x^2 - 2689.81·x + 1008.68)^0.5         si  0.750 ≤ x < 2.750
+  8.85075·(5802.01·x^2 - 25156.3·x + 32475.1)^0.5         si  2.750 ≤ x < 8.500
+  8.85075·(46981.0·x^2 - 1.01009e+6·x + 5.42924e+6)^0.5   si  8.500 ≤ x < 10.750
+  0.000                                                   si  10.750 ≤ x ≤ 11.500
+}
+
+T(x) [lbf·in] = {
+  0.000       si  0.000 ≤ x < 0.750
+  0.000       si  0.750 ≤ x < 2.750
+  -3240.000   si  2.750 ≤ x < 8.500
+  0.000       si  8.500 ≤ x < 10.750
+  0.000       si  10.750 ≤ x ≤ 11.500
+}
+
+========================================================================
+5. PROCEDIMIENTO EN LOS PUNTOS CRÍTICOS
+========================================================================
+
+------------------------------------------------------------------------
+x = 0.750 in, lado = x⁺, tramo = [0.000, 1.250] in, d = 1.000 in, discontinuidad = apoyo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = 0.000, Mz = 0.000, MR = 0.000, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.000, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.000 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.000/26.360 + 0.000/68.000 = 0.000000
+    nf = 175378476.469
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.000, σx,2 = 0.000 ksi
+    σx,max = 0.000, τx,max = 0.000 ksi
+    σ'max = 0.000 ksi, σ'max,cons = 0.000
+    ny = Sy/σ'max = 319359607.834
+
+  H. Resultado de la sección:
+    nf = 175378476.469, ny = 319359607.834, gobierna = Goodman modificado, n_local = 175378476.469
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 1.250 in, lado = x⁻, tramo = [0.000, 1.250] in, d = 1.000 in, discontinuidad = tramo
+  Radio de redondeo: 0.030 in
+  Concentrador activo: Escalonamiento x=0.03175
+  Kt,N = 2.3825, Kt,B = 2.6275, Kts = 1.9618
+  q = 0.6387, qs = 0.7025
+  Kf,N = 1.8830, Kf,B = 2.0395, Kfs = 1.6757
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -57.487, Mz = 178.362, MR = 187.398, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.909, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.893 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.0395·1.909 + 1.8830·0.000/0.85)² + 3(1.6757·0.000)²)
+        = 3.893 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.0395·0.000 + 1.8830·0.000)² + 3(1.6757·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.893/26.360 + 0.000/68.000 = 0.147687
+    nf = 6.771
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.893, σx,2 = -3.893 ksi
+    σx,max = 3.893, τx,max = 0.000 ksi
+    σ'max = 3.893 ksi, σ'max,cons = 3.893
+    ny = Sy/σ'max = 12.330
+
+  H. Resultado de la sección:
+    nf = 6.771, ny = 12.330, gobierna = Goodman modificado, n_local = 6.771
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 1.250 in, lado = x⁺, tramo = [1.250, 1.750] in, d = 1.400 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -57.488, Mz = 178.363, MR = 187.398, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.696, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.696 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.696 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.696 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8462 (d = 1.400 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.427 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.696/25.427 + 0.000/68.000 = 0.027358
+    nf = 36.553
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.696, σx,2 = -0.696 ksi
+    σx,max = 0.696, τx,max = 0.000 ksi
+    σ'max = 0.696 ksi, σ'max,cons = 0.696
+    ny = Sy/σ'max = 69.002
+
+  H. Resultado de la sección:
+    nf = 36.553, ny = 69.002, gobierna = Goodman modificado, n_local = 36.553
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 1.750 in, lado = x⁻, tramo = [1.250, 1.750] in, d = 1.400 in, discontinuidad = tramo
+  Radio de redondeo: 0.062 in
+  Concentrador activo: Escalonamiento x=0.044449999999999996
+  Kt,N = 1.8491, Kt,B = 2.1100, Kts = 1.5371
+  q = 0.7184, qs = 0.7732
+  Kf,N = 1.6100, Kf,B = 1.7975, Kfs = 1.4153
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -114.975, Mz = 356.725, MR = 374.796, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.391, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 2.501 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7975·1.391 + 1.6100·0.000/0.85)² + 3(1.4153·0.000)²)
+        = 2.501 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7975·0.000 + 1.6100·0.000)² + 3(1.4153·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8462 (d = 1.400 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.427 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 2.501/25.427 + 0.000/68.000 = 0.098350
+    nf = 10.168
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 2.501, σx,2 = -2.501 ksi
+    σx,max = 2.501, τx,max = 0.000 ksi
+    σ'max = 2.501 ksi, σ'max,cons = 2.501
+    ny = Sy/σ'max = 19.194
+
+  H. Resultado de la sección:
+    nf = 10.168, ny = 19.194, gobierna = Goodman modificado, n_local = 10.168
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 1.750 in, lado = x⁺, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -114.975, Mz = 356.725, MR = 374.796, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.890, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.890 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.890 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.890 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.890/25.025 + 0.000/68.000 = 0.035552
+    nf = 28.128
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.890, σx,2 = -0.890 ksi
+    σx,max = 0.890, τx,max = 0.000 ksi
+    σ'max = 0.890 ksi, σ'max,cons = 0.890
+    ny = Sy/σ'max = 53.952
+
+  H. Resultado de la sección:
+    nf = 28.128, ny = 53.952, gobierna = Goodman modificado, n_local = 28.128
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 2.465 in, lado = x⁻, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -197.201, Mz = 611.842, MR = 642.837, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.526, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 1.526 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·1.526 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 1.526 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 1.526/25.025 + 0.000/68.000 = 0.060977
+    nf = 16.400
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 1.526, σx,2 = -1.526 ksi
+    σx,max = 1.526, τx,max = 0.000 ksi
+    σ'max = 1.526 ksi, σ'max,cons = 1.526
+    ny = Sy/σ'max = 31.456
+
+  H. Resultado de la sección:
+    nf = 16.400, ny = 31.456, gobierna = Goodman modificado, n_local = 16.400
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 2.465 in, lado = x⁺, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 3
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -197.201, Mz = 611.842, MR = 642.837, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.526, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 2.712 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·1.526 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 2.712 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 2.712/25.025 + 0.000/68.000 = 0.108382
+    nf = 9.227
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 2.712, σx,2 = -2.712 ksi
+    σx,max = 2.712, τx,max = 0.000 ksi
+    σ'max = 2.712 ksi, σ'max,cons = 2.712
+    ny = Sy/σ'max = 17.697
+
+  H. Resultado de la sección:
+    nf = 9.227, ny = 17.697, gobierna = Goodman modificado, n_local = 9.227
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 2.750 in, lado = x⁻, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = carga puntual
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 3
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -356.725, Vz = -114.975, VR = 374.796 lbf
+    My = -229.950, Mz = 713.450, MR = 749.592, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.779, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.163 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·1.779 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 3.163 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.163/25.025 + 0.000/68.000 = 0.126381
+    nf = 7.913
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.163, σx,2 = -3.163 ksi
+    σx,max = 3.163, τx,max = 0.000 ksi
+    σ'max = 3.163 ksi, σ'max,cons = 3.163
+    ny = Sy/σ'max = 15.177
+
+  H. Resultado de la sección:
+    nf = 7.913, ny = 15.177, gobierna = Goodman modificado, n_local = 7.913
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 2.750 in, lado = x, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 3
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -229.950, Mz = 713.450, MR = 749.592, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.779, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.163 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·1.779 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 3.163 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.163/25.025 + 14.318/68.000 = 0.336947
+    nf = 2.968
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.163, σx,2 = -3.163 ksi
+    σx,max = 3.163, τx,max = 8.267 ksi
+    σ'max = 14.664 ksi, σ'max,cons = 17.481
+    ny = Sy/σ'max = 3.273
+
+  H. Resultado de la sección:
+    nf = 2.968, ny = 3.273, gobierna = Goodman modificado, n_local = 2.968
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 2.750 in, lado = x⁺, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = carga puntual
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 3
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -229.950, Mz = 713.450, MR = 749.592, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.779, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.163 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·1.779 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 3.163 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.163/25.025 + 14.318/68.000 = 0.336947
+    nf = 2.968
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.163, σx,2 = -3.163 ksi
+    σx,max = 3.163, τx,max = 8.267 ksi
+    σ'max = 14.664 ksi, σ'max,cons = 17.481
+    ny = Sy/σ'max = 3.273
+
+  H. Resultado de la sección:
+    nf = 2.968, ny = 3.273, gobierna = Goodman modificado, n_local = 2.968
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 3.035 in, lado = x⁻, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 3
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -416.510, Mz = 758.945, MR = 865.724, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 2.055, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.653 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·2.055 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 3.653 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.653/25.025 + 14.318/68.000 = 0.356527
+    nf = 2.805
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.653, σx,2 = -3.653 ksi
+    σx,max = 3.653, τx,max = 8.267 ksi
+    σ'max = 14.777 ksi, σ'max,cons = 17.971
+    ny = Sy/σ'max = 3.248
+
+  H. Resultado de la sección:
+    nf = 2.805, ny = 3.248, gobierna = Goodman modificado, n_local = 2.805
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 3.035 in, lado = x⁺, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -416.510, Mz = 758.945, MR = 865.724, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 2.055, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 2.055 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -3.846 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·2.055 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 2.055 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-3.846)²)
+        = 6.661 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 2.055/25.025 + 6.661/68.000 = 0.180069
+    nf = 5.553
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 2.055, σx,2 = -2.055 ksi
+    σx,max = 2.055, τx,max = 3.846 ksi
+    σ'max = 6.970 ksi, σ'max,cons = 8.716
+    ny = Sy/σ'max = 6.886
+
+  H. Resultado de la sección:
+    nf = 5.553, ny = 6.886, gobierna = Goodman modificado, n_local = 5.553
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 3.500 in, lado = x⁻, tramo = [1.750, 3.500] in, d = 1.625 in, discontinuidad = tramo
+  Radio de redondeo: 0.163 in
+  Concentrador activo: Escalonamiento x=0.08889999999999999
+  Kt,N = 1.5517, Kt,B = 1.6990, Kts = 1.3566
+  q = 0.8045, qs = 0.8461
+  Kf,N = 1.4438, Kf,B = 1.5623, Kfs = 1.3017
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -721.181, Mz = 833.244, MR = 1101.997, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 2.616, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 4.087 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -5.006 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.5623·2.616 + 1.4438·0.000/0.85)² + 3(1.3017·0.000)²)
+        = 4.087 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.5623·0.000 + 1.4438·0.000)² + 3(1.3017·-3.846)²)
+        = 8.670 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 4.087/25.025 + 8.670/68.000 = 0.290813
+    nf = 3.439
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 4.087, σx,2 = -4.087 ksi
+    σx,max = 4.087, τx,max = 5.006 ksi
+    σ'max = 9.585 ksi, σ'max,cons = 12.757
+    ny = Sy/σ'max = 5.008
+
+  H. Resultado de la sección:
+    nf = 3.439, ny = 5.008, gobierna = Goodman modificado, n_local = 3.439
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 3.500 in, lado = x⁺, tramo = [3.500, 7.500] in, d = 2.000 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -721.181, Mz = 833.244, MR = 1101.997, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 1.403, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -2.063 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 1.403 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -2.063 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·1.403 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 1.403 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-2.063)²)
+        = 3.573 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8145 (d = 2.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 24.475 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 1.403/24.475 + 3.573/68.000 = 0.109866
+    nf = 9.102
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 1.403, σx,2 = -1.403 ksi
+    σx,max = 1.403, τx,max = 2.063 ksi
+    σ'max = 3.838 ksi, σ'max,cons = 4.976
+    ny = Sy/σ'max = 12.506
+
+  H. Resultado de la sección:
+    nf = 9.102, ny = 12.506, gobierna = Goodman modificado, n_local = 9.102
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 7.500 in, lado = x⁻, tramo = [3.500, 7.500] in, d = 2.000 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3341.081, Mz = 1472.144, MR = 3651.031, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 4.649, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -2.063 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 4.649 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -2.063 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·4.649 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 4.649 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-2.063)²)
+        = 3.573 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8145 (d = 2.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 24.475 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 4.649/24.475 + 3.573/68.000 = 0.242470
+    nf = 4.124
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 4.649, σx,2 = -4.649 ksi
+    σx,max = 4.649, τx,max = 2.063 ksi
+    σ'max = 5.863 ksi, σ'max,cons = 8.221
+    ny = Sy/σ'max = 8.187
+
+  H. Resultado de la sección:
+    nf = 4.124, ny = 8.187, gobierna = Goodman modificado, n_local = 4.124
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 7.500 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = tramo
+  Radio de redondeo: 0.163 in
+  Concentrador activo: Escalonamiento x=0.1905
+  Kt,N = 1.5517, Kt,B = 1.6990, Kts = 1.3566
+  q = 0.8045, qs = 0.8461
+  Kf,N = 1.4438, Kf,B = 1.5623, Kfs = 1.3017
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3341.081, Mz = 1472.144, MR = 3651.032, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 8.667, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 13.540 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -5.006 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.5623·8.667 + 1.4438·0.000/0.85)² + 3(1.3017·0.000)²)
+        = 13.540 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.5623·0.000 + 1.4438·0.000)² + 3(1.3017·-3.846)²)
+        = 8.670 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 13.540/25.025 + 8.670/68.000 = 0.668574
+    nf = 1.496
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 13.540, σx,2 = -13.540 ksi
+    σx,max = 13.540, τx,max = 5.006 ksi
+    σ'max = 16.078 ksi, σ'max,cons = 22.210
+    ny = Sy/σ'max = 2.985
+
+  H. Resultado de la sección:
+    nf = 1.496, ny = 2.985, gobierna = Goodman modificado, n_local = 1.496
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 7.715 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3482.009, Mz = 1506.511, MR = 3793.937, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.006, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 9.006 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -3.846 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·9.006 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 9.006 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-3.846)²)
+        = 6.661 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 9.006/25.025 + 6.661/68.000 = 0.457827
+    nf = 2.184
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 9.006, σx,2 = -9.006 ksi
+    σx,max = 9.006, τx,max = 3.846 ksi
+    σ'max = 11.201 ksi, σ'max,cons = 15.667
+    ny = Sy/σ'max = 4.285
+
+  H. Resultado de la sección:
+    nf = 2.184, ny = 4.285, gobierna = Goodman modificado, n_local = 2.184
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 7.715 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 4
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3482.009, Mz = 1506.511, MR = 3793.937, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.006, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 16.008 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·9.006 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 16.008 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 16.008/25.025 + 14.318/68.000 = 0.850224
+    nf = 1.176
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 16.008, σx,2 = -16.008 ksi
+    σx,max = 16.008, τx,max = 8.267 ksi
+    σ'max = 21.477 ksi, σ'max,cons = 30.326
+    ny = Sy/σ'max = 2.235
+
+  H. Resultado de la sección:
+    nf = 1.176, ny = 2.235, gobierna = Goodman modificado, n_local = 1.176
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 8.000 in, lado = x, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 4
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3668.569, Mz = 1552.006, MR = 3983.355, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.456, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 16.807 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·9.456 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 16.807 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 16.807/25.025 + 14.318/68.000 = 0.882160
+    nf = 1.134
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 16.807, σx,2 = -16.807 ksi
+    σx,max = 16.807, τx,max = 8.267 ksi
+    σ'max = 22.079 ksi, σ'max,cons = 31.125
+    ny = Sy/σ'max = 2.174
+
+  H. Resultado de la sección:
+    nf = 1.134, ny = 2.174, gobierna = Goodman modificado, n_local = 1.134
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 8.285 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: 0.033 in
+  Concentrador activo: Chavetero de Engrane 4
+  Kt,N = 2.2000, Kt,B = 2.2000, Kts = 2.6175
+  q = 0.6479, qs = 0.7108
+  Kf,N = 1.7774, Kf,B = 1.7774, Kfs = 2.1497
+  Fuente: Peterson, Chart 5.1 y 5.2
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3855.129, Mz = 1597.502, MR = 4173.012, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.906, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 17.607 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -8.267 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.7774·9.906 + 1.7774·0.000/0.85)² + 3(2.1497·0.000)²)
+        = 17.607 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.7774·0.000 + 1.7774·0.000)² + 3(2.1497·-3.846)²)
+        = 14.318 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 17.607/25.025 + 14.318/68.000 = 0.914136
+    nf = 1.094
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 17.607, σx,2 = -17.607 ksi
+    σx,max = 17.607, τx,max = 8.267 ksi
+    σ'max = 22.694 ksi, σ'max,cons = 31.925
+    ny = Sy/σ'max = 2.115
+
+  H. Resultado de la sección:
+    nf = 1.094, ny = 2.115, gobierna = Goodman modificado, n_local = 1.094
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 8.285 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = chavetero
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3855.129, Mz = 1597.502, MR = 4173.012, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.906, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 9.906 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -3.846 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·9.906 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 9.906 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-3.846)²)
+        = 6.661 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 9.906/25.025 + 6.661/68.000 = 0.493785
+    nf = 2.025
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 9.906, σx,2 = -9.906 ksi
+    σx,max = 9.906, τx,max = 3.846 ksi
+    σ'max = 11.937 ksi, σ'max,cons = 16.566
+    ny = Sy/σ'max = 4.021
+
+  H. Resultado de la sección:
+    nf = 2.025, ny = 4.021, gobierna = Goodman modificado, n_local = 2.025
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 8.500 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = carga puntual
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = -159.725, Vz = -654.975, VR = 674.169 lbf
+    My = -3996.056, Mz = 1631.869, MR = 4316.418, T = -3240.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 10.246, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = -3.846 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 10.246 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = -3.846 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·10.246 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 10.246 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·-3.846)²)
+        = 6.661 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 10.246/25.025 + 6.661/68.000 = 0.507388
+    nf = 1.971
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 10.246, σx,2 = -10.246 ksi
+    σx,max = 10.246, τx,max = 3.846 ksi
+    σ'max = 12.221 ksi, σ'max,cons = 16.907
+    ny = Sy/σ'max = 3.928
+
+  H. Resultado de la sección:
+    nf = 1.971, ny = 3.928, gobierna = Goodman modificado, n_local = 1.971
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 8.500 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = carga puntual
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -3996.056, Mz = 1631.869, MR = 4316.418, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 10.246, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 10.246 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·10.246 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 10.246 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 10.246/25.025 + 0.000/68.000 = 0.409437
+    nf = 2.442
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 10.246, σx,2 = -10.246 ksi
+    σx,max = 10.246, τx,max = 0.000 ksi
+    σ'max = 10.246 ksi, σ'max,cons = 10.246
+    ny = Sy/σ'max = 4.685
+
+  H. Resultado de la sección:
+    nf = 2.442, ny = 4.685, gobierna = Goodman modificado, n_local = 2.442
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 9.466 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = ranura
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -2280.416, Mz = 931.253, MR = 2463.236, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 5.847, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 5.847 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·5.847 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 5.847 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 5.847/25.025 + 0.000/68.000 = 0.233652
+    nf = 4.280
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 5.847, σx,2 = -5.847 ksi
+    σx,max = 5.847, τx,max = 0.000 ksi
+    σ'max = 5.847 ksi, σ'max,cons = 5.847
+    ny = Sy/σ'max = 8.209
+
+  H. Resultado de la sección:
+    nf = 4.280, ny = 8.209, gobierna = Goodman modificado, n_local = 4.280
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 9.466 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.529 in, discontinuidad = ranura
+  Radio de redondeo: 0.010 in
+  Concentrador activo: Ranura x=0.2413
+  Kt,N = 4.1000, Kt,B = 4.1000, Kts = 2.4767
+  q = 0.5000, qs = 0.5719
+  Kf,N = 2.5499, Kf,B = 2.5499, Kfs = 1.8445
+  Fuente: Shigley, figuras A-15-16/17
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -2280.416, Mz = 931.253, MR = 2463.236, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 7.019, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 17.898 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.5499·7.019 + 2.5499·0.000/0.85)² + 3(1.8445·0.000)²)
+        = 17.898 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.5499·0.000 + 2.5499·0.000)² + 3(1.8445·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8382 (d = 1.529 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.189 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 17.898/25.189 + 0.000/68.000 = 0.710571
+    nf = 1.407
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 17.898, σx,2 = -17.898 ksi
+    σx,max = 17.898, τx,max = 0.000 ksi
+    σ'max = 17.898 ksi, σ'max,cons = 17.898
+    ny = Sy/σ'max = 2.682
+
+  H. Resultado de la sección:
+    nf = 1.407, ny = 2.682, gobierna = Goodman modificado, n_local = 1.407
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 9.500 in, lado = x, tramo = [7.500, 9.750] in, d = 1.529 in, discontinuidad = ranura
+  Radio de redondeo: 0.010 in
+  Concentrador activo: Ranura x=0.2413
+  Kt,N = 4.1000, Kt,B = 4.1000, Kts = 2.4767
+  q = 0.5000, qs = 0.5719
+  Kf,N = 2.5499, Kf,B = 2.5499, Kfs = 1.8445
+  Fuente: Shigley, figuras A-15-16/17
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -2220.031, Mz = 906.594, MR = 2398.010, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 6.833, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 17.424 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.5499·6.833 + 2.5499·0.000/0.85)² + 3(1.8445·0.000)²)
+        = 17.424 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.5499·0.000 + 2.5499·0.000)² + 3(1.8445·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8382 (d = 1.529 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.189 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 17.424/25.189 + 0.000/68.000 = 0.691756
+    nf = 1.446
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 17.424, σx,2 = -17.424 ksi
+    σx,max = 17.424, τx,max = 0.000 ksi
+    σ'max = 17.424 ksi, σ'max,cons = 17.424
+    ny = Sy/σ'max = 2.755
+
+  H. Resultado de la sección:
+    nf = 1.446, ny = 2.755, gobierna = Goodman modificado, n_local = 1.446
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 9.534 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.529 in, discontinuidad = ranura
+  Radio de redondeo: 0.010 in
+  Concentrador activo: Ranura x=0.2413
+  Kt,N = 4.1000, Kt,B = 4.1000, Kts = 2.4767
+  q = 0.5000, qs = 0.5719
+  Kf,N = 2.5499, Kf,B = 2.5499, Kfs = 1.8445
+  Fuente: Shigley, figuras A-15-16/17
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -2159.646, Mz = 881.934, MR = 2332.784, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 6.647, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 16.950 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.5499·6.647 + 2.5499·0.000/0.85)² + 3(1.8445·0.000)²)
+        = 16.950 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.5499·0.000 + 2.5499·0.000)² + 3(1.8445·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8382 (d = 1.529 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.189 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 16.950/25.189 + 0.000/68.000 = 0.672940
+    nf = 1.486
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 16.950, σx,2 = -16.950 ksi
+    σx,max = 16.950, τx,max = 0.000 ksi
+    σ'max = 16.950 ksi, σ'max,cons = 16.950
+    ny = Sy/σ'max = 2.832
+
+  H. Resultado de la sección:
+    nf = 1.486, ny = 2.832, gobierna = Goodman modificado, n_local = 1.486
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 9.534 in, lado = x⁺, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = ranura
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -2159.646, Mz = 881.934, MR = 2332.784, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 5.538, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 5.538 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·5.538 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 5.538 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 5.538/25.025 + 0.000/68.000 = 0.221278
+    nf = 4.519
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 5.538, σx,2 = -5.538 ksi
+    σx,max = 5.538, τx,max = 0.000 ksi
+    σ'max = 5.538 ksi, σ'max,cons = 5.538
+    ny = Sy/σ'max = 8.668
+
+  H. Resultado de la sección:
+    nf = 4.519, ny = 8.668, gobierna = Goodman modificado, n_local = 4.519
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 9.750 in, lado = x⁻, tramo = [7.500, 9.750] in, d = 1.625 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -1776.025, Mz = 725.275, MR = 1918.408, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 4.554, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 4.554 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·4.554 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 4.554 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8328 (d = 1.625 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.025 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 4.554/25.025 + 0.000/68.000 = 0.181972
+    nf = 5.495
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 4.554, σx,2 = -4.554 ksi
+    σx,max = 4.554, τx,max = 0.000 ksi
+    σ'max = 4.554 ksi, σ'max,cons = 4.554
+    ny = Sy/σ'max = 10.540
+
+  H. Resultado de la sección:
+    nf = 5.495, ny = 10.540, gobierna = Goodman modificado, n_local = 5.495
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 9.750 in, lado = x⁺, tramo = [9.750, 10.250] in, d = 1.400 in, discontinuidad = tramo
+  Radio de redondeo: 0.030 in
+  Concentrador activo: Escalonamiento x=0.24764999999999998
+  Kt,N = 2.2337, Kt,B = 2.7139, Kts = 1.9085
+  q = 0.6387, qs = 0.7025
+  Kf,N = 1.7879, Kf,B = 2.0946, Kfs = 1.6382
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -1776.025, Mz = 725.275, MR = 1918.408, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 7.121, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 14.916 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.0946·7.121 + 1.7879·0.000/0.85)² + 3(1.6382·0.000)²)
+        = 14.916 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.0946·0.000 + 1.7879·0.000)² + 3(1.6382·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8462 (d = 1.400 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.427 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 14.916/25.427 + 0.000/68.000 = 0.586627
+    nf = 1.705
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 14.916, σx,2 = -14.916 ksi
+    σx,max = 14.916, τx,max = 0.000 ksi
+    σ'max = 14.916 ksi, σ'max,cons = 14.916
+    ny = Sy/σ'max = 3.218
+
+  H. Resultado de la sección:
+    nf = 1.705, ny = 3.218, gobierna = Goodman modificado, n_local = 1.705
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 10.250 in, lado = x⁻, tramo = [9.750, 10.250] in, d = 1.400 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -888.013, Mz = 362.638, MR = 959.204, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 3.561, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 3.561 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·3.561 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 3.561 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8462 (d = 1.400 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 25.427 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 3.561/25.427 + 0.000/68.000 = 0.140031
+    nf = 7.141
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 3.561, σx,2 = -3.561 ksi
+    σx,max = 3.561, τx,max = 0.000 ksi
+    σ'max = 3.561 ksi, σ'max,cons = 3.561
+    ny = Sy/σ'max = 13.481
+
+  H. Resultado de la sección:
+    nf = 7.141, ny = 13.481, gobierna = Goodman modificado, n_local = 7.141
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 10.250 in, lado = x⁺, tramo = [10.250, 11.500] in, d = 1.000 in, discontinuidad = tramo
+  Radio de redondeo: 0.020 in
+  Concentrador activo: Escalonamiento x=0.26034999999999997
+  Kt,N = 2.5150, Kt,B = 2.8250, Kts = 2.1701
+  q = 0.5907, qs = 0.6585
+  Kf,N = 1.8949, Kf,B = 2.0780, Kfs = 1.7705
+  Fuente: Shigley, figuras A-15-7/8/9
+  Nota: Kt es un resultado intermedio; los esfuerzos corregidos usan Kf.
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = -888.012, Mz = 362.637, MR = 959.204, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 9.770, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 20.303 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((2.0780·9.770 + 1.8949·0.000/0.85)² + 3(1.7705·0.000)²)
+        = 20.303 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((2.0780·0.000 + 1.8949·0.000)² + 3(1.7705·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 20.303/26.360 + 0.000/68.000 = 0.770246
+    nf = 1.298
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 20.303, σx,2 = -20.303 ksi
+    σx,max = 20.303, τx,max = 0.000 ksi
+    σ'max = 20.303 ksi, σ'max,cons = 20.303
+    ny = Sy/σ'max = 2.364
+
+  H. Resultado de la sección:
+    nf = 1.298, ny = 2.364, gobierna = Goodman modificado, n_local = 1.298
+    Cumple n_min = 1.500: no
+
+------------------------------------------------------------------------
+x = 10.750 in, lado = x⁻, tramo = [10.250, 11.500] in, d = 1.000 in, discontinuidad = apoyo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 725.275, Vz = 1776.025, VR = 1918.408 lbf
+    My = 0.000, Mz = 0.000, MR = 0.000, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.000, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.000 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.000/26.360 + 0.000/68.000 = 0.000000
+    nf = 34263379.966
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.000, σx,2 = 0.000 ksi
+    σx,max = 0.000, τx,max = 0.000 ksi
+    σ'max = 0.000 ksi, σ'max,cons = 0.000
+    ny = Sy/σ'max = 62392716.930
+
+  H. Resultado de la sección:
+    nf = 34263379.966, ny = 62392716.930, gobierna = Goodman modificado, n_local = 34263379.966
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 10.750 in, lado = x⁺, tramo = [10.250, 11.500] in, d = 1.000 in, discontinuidad = apoyo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 0.000, Vz = 0.000, VR = 0.000 lbf
+    My = 0.000, Mz = 0.000, MR = 0.000, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.000, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.000 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.000/26.360 + 0.000/68.000 = 0.000000
+    nf = 576803979372055.750
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.000, σx,2 = 0.000 ksi
+    σx,max = 0.000, τx,max = 0.000 ksi
+    σ'max = 0.000 ksi, σ'max,cons = 0.000
+    ny = Sy/σ'max = 1111608603354840.250
+
+  H. Resultado de la sección:
+    nf = 576803979372055.750, ny = 1111608603354840.250, gobierna = Goodman modificado, n_local = 576803979372055.750
+    Cumple n_min = 1.500: sí
+
+------------------------------------------------------------------------
+x = 11.500 in, lado = x, tramo = [10.250, 11.500] in, d = 1.000 in, discontinuidad = tramo
+  Radio de redondeo: no aplica
+  Concentrador activo: ninguno (Kf,N = Kf,B = Kfs = 1)
+
+  A. Solicitaciones:
+    N = 0.000, Vy = 0.000, Vz = 0.000, VR = 0.000 lbf
+    My = 0.000, Mz = 0.000, MR = 0.000, T = 0.000 lbf·in
+    Ma = MR, Mm = 0, Na = 0, Nm = N, Ta = 0, Tm = T
+
+  B. Esfuerzos nominales:
+    σN,a = 0.000, σN,m = 0.000 ksi
+    σB,a = 32Ma/(πd³) = 0.000, σB,m = 0 ksi
+    τT,a = 0.000, τT,m = 16Tm/(πd³) = 0.000 ksi
+
+  C. Esfuerzos corregidos:
+    σa = Kf,B·σB,a + Kf,N·σN,a = 0.000 ksi
+    σm = Kf,B·σB,m + Kf,N·σN,m = 0.000 ksi
+    τa = 0.000, τm = 0.000 ksi
+
+  D. Von Mises:
+    σ'a = sqrt((Kf,B·σB,a + Kf,N·σN,a/0.85)² + 3(Kfs·τT,a)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000/0.85)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+    σ'm = sqrt((Kf,B·σB,m + Kf,N·σN,m)² + 3(Kfs·τT,m)²)
+        = sqrt((1.0000·0.000 + 1.0000·0.000)² + 3(1.0000·0.000)²)
+        = 0.000 ksi
+
+  E. Resistencia a fatiga:
+    Se' = 34.000 ksi
+    ka = 0.8838 (a = 4.5100, b = -0.2650, Sut = 468.843 MPa)
+    kb = 0.8772 (d = 1.000 in), kc = 1.0000, kd = 1.0000, ke = 1.0000, kf,marin = 1.0000
+    Se = ka·kb·kc·kd·ke·kf,marin·Se' = 26.360 ksi
+
+  F. Factor de seguridad a fatiga (Goodman):
+    1/nf = σ'a/Se + σ'm/Sut = 0.000/26.360 + 0.000/68.000 = 0.000000
+    nf = 576803979372055.750
+
+  G. Fluencia (Von Mises máximo):
+    σx,1 = 0.000, σx,2 = 0.000 ksi
+    σx,max = 0.000, τx,max = 0.000 ksi
+    σ'max = 0.000 ksi, σ'max,cons = 0.000
+    ny = Sy/σ'max = 1111608603354840.250
+
+  H. Resultado de la sección:
+    nf = 576803979372055.750, ny = 1111608603354840.250, gobierna = Goodman modificado, n_local = 576803979372055.750
+    Cumple n_min = 1.500: sí
+
+========================================================================
+6. RESUMEN FINAL
+========================================================================
+Mínimo Goodman modificado: n = 1.094 en x = 8.285 in
+Mínimo Fluencia Von Mises: n = 2.115 en x = 8.285 in
+
+Factor de seguridad del eje: n_eje = 1.094 en x = 8.285 in
+Criterio que gobierna: Goodman modificado
+n_min = 1.500: NO CUMPLE
+
+Chavetas:
+  Engrane 3: nc = 2.056, np = 1.500, n_chaveta = 1.500: CUMPLE
+  Engrane 4: nc = 2.056, np = 1.500, n_chaveta = 1.500: CUMPLE
+
+Advertencias y aproximaciones:
+  - La chaveta de Engrane 3 tiene Sy mayor o igual que la del eje.
+  - La chaveta de Engrane 4 tiene Sy mayor o igual que la del eje.
+  - Peterson no da un factor específico para carga axial; se adopta Kt,N = Kt,B como aproximación académica.
+  - El chavetero se modela con el diámetro bruto del tramo, sin descontar la profundidad, y con el mismo Kf en todo su intervalo. Es una aproximación conservadora.
+
+Resultado general: NO ACEPTADO
+
+========================================================================
+COMPARACIÓN CON SHIGLEY, EJEMPLO 7-2
+========================================================================
+
+Reacciones en los cojinetes (lbf):
+  Magnitud        Programa   Shigley
+  RAz                115.0     115.0
+  RAy                356.7     356.7
+  RBz               1776.0    1776.0
+  RBy                725.3     725.3
+
+Par de torsión entre engranes (lbf·in):
+  Programa = 3240.0   Shigley = 3240.0
+
+Momento flector resultante (lbf·in):
+  Estación    x (in)   Programa   Shigley
+      G         2.75      749.6     749.0
+      I         7.50     3651.0    3651.0
+      J         8.50     4316.4    4316.0
+      K         9.50     2398.0    2398.0
+      M        10.25      959.2     959.0
+
+Factor de seguridad a fatiga en los puntos del ejemplo:
+  Punto                          Programa   Shigley
+  Hombro I                          1.496   (1050: no lo recalcula)
+  Chavetero, extremo izquierdo      1.176   1.540
+  Chavetero, extremo derecho        1.094   (no lo verifica)
+  Ranura K                          1.446   1.860
+  Hombro M                          1.298   1.560
+
+Notas de la comparación:
+  - Las reacciones, el par y los momentos coinciden con el
+    ejemplo dentro del redondeo de las fuerzas publicadas.
+  - El nf = 1.56 que Shigley informa para el hombro I es con
+    el AISI 1020 inicial (Se = 25.1 kpsi). Con el AISI 1050
+    final el ejemplo no vuelve a verificar ese hombro.
+  - Shigley verifica el chavetero solo en su extremo izquierdo
+    (M = 3750 lbf·in). El programa revisa también el extremo
+    derecho, donde el momento es mayor; por eso el mínimo es
+    más bajo y el resultado general no alcanza n_min = 1.5.
+  - Las diferencias de Kf y Kfs provienen de las gráficas
+    digitalizadas y de la sensibilidad de Neuber: el ejemplo
+    usa Kf = 1.82 y Kfs = 2.42; el programa obtiene 1.89 y
+    2.28 para el chavetero. La ranura usa Kt = 4.10 en lugar
+    de 4.3, también por digitalización de A-15-16.
